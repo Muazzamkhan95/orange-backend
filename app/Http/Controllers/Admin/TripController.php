@@ -60,7 +60,7 @@ class TripController extends Controller
         $FcmToken = $driver_status->device_token;
         $url = 'https://fcm.googleapis.com/fcm/send';
 
-        $serverKey = 'AAAA4PcRZoA:APA91bFflUkD9wMurjOEBylgRkFaNJf6jjqQDFXzGLHLs-ZBrdxgqd0bzSaPdUPpL7GwS0CVjzunI4e7gNk25kJg67Fz1aatYV3gEzGIeN3hhkA4yCvtlBY0vk0doChhyQc72Id7pDxx'; // ADD SERVER KEY HERE PROVIDED BY FCM
+        $serverKey = 'AAAAQJvFPAM:APA91bHKs3Xi-orSH1ujmohd3ZVrMw_cB-Qu6BN5PGcZWj9WxNwgaIEU2aTMdNMpTP278WIWvwjHZzys8ypGv1YXk5tjgyJLEVPlNOu09fSAzdo3nsDrrSvSV0Jq2hpYEEfJRejY_y_5'; // ADD SERVER KEY HERE PROVIDED BY FCM
 
         $data1 = [
                 "to"=> $FcmToken,

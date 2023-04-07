@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="{{ asset('editor/css/froala_editor.css') }}">
+<link rel="stylesheet" href="{{ asset('editor/css/froala_style.css') }}">
+<link rel="stylesheet" href="{{ asset('editor/css/plugins/code_view.css') }}">
+<link rel="stylesheet" href="{{ asset('editor/css/plugins/draggable.css') }}">
+<link rel="stylesheet" href="{{ asset('editor/css/plugins/colors.css') }}">
+<link rel="stylesheet" href="{{ asset('editor/css/plugins/line_breaker.css') }}">
+<link rel="stylesheet" href="{{ asset('editor/css/plugins/table.css') }}">
+<link rel="stylesheet" href="{{ asset('editor/css/plugins/char_counter.css') }}">
+<link rel="stylesheet" href="{{ asset('editor/css/plugins/special_characters.css') }}">

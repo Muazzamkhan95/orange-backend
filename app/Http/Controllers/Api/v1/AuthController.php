@@ -327,7 +327,8 @@ class AuthController extends Controller
     {
         $user = User::where('email', $request->email)->first();
         $user->password = Hash::make($request->password);
-
+        $user->update();
+        return response('Password Updated', 200);
     }
 
     /**

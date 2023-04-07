@@ -199,6 +199,13 @@ class AuthController extends Controller
             $driver->email = $validated['email'];
             $driver->cnic = $validated['cnic'];
             $driver->lic = $validated['lic'];
+            if (!empty(request()->file('profile_image'))) {
+                $destinationPath = 'storage/cv';
+                $extension = request()->file('profile_image')->getClientOriginalExtension();
+                $fileName ='/storage/profile/'. 'image-' . time() . rand() . $driver->id . '.' . $extension;
+                request()->file('profile_image')->move($destinationPath, $fileName);
+                $driver->profile_image  = $fileName;
+            }
             if (!empty(request()->file('cv_file'))) {
                 $destinationPath = 'storage/cv';
                 $extension = request()->file('cv_file')->getClientOriginalExtension();

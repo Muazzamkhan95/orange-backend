@@ -149,6 +149,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('myEarning/week/{driver_id}', [DriverController::class, 'getWeekEarningDetail']);
         Route::get('myWallet/{driver_id}', [DriverController::class, 'getWalletDetail']);
 
+        Route::get('trip/week/{driver_id}', [DriverController::class, 'getWeekRides']);
 
         Route::get('myEarning/chart/{driver_id}', [DriverController::class, 'getChartData']);
 

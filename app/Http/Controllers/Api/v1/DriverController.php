@@ -50,16 +50,7 @@ class DriverController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Driver  $driver
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Driver $driver)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -367,5 +358,39 @@ class DriverController extends Controller
             array_push($totat_price_sum, $item);
         }
         return response( $totat_price_sum, 200);
+    }
+    public function getWeekRides($driver_id)
+    {
+        // $trip = Trip::where('driver_id', $id)->where('status', 5)->get();
+        $from = Carbon::now()->startOfWeek();
+        $to = Carbon::now()->endOfWeek();
+        $weekRide = Trip::whereBetween('created_at', [$from, $to])->where('driver_id', $driver_id)->where('status', 5)->count();
+        $dates = array();
+        foreach( range( -6, 0 ) AS $i ) {
+            $date = Carbon::now()->addDays( $i )->format( 'Y-m-d' );
+            array_push($dates, $date);
+            // $dates->put( $date, 0);
+        }
+        // dd($dates);
+
+        // Get the post counts
+        $totat_price_sum = array();
+        foreach($dates as $dat){
+
+            // $d = new DateTime($date);
+            // $d->format('l');  //pass l for lion aphabet in format
+
+            $posts = Trip::where('driver_id', $driver_id)->where('created_at', '>=', $dat)->count();
+            // $datenow = Trip::where('created_at', '>=', $dat)->first()->pluck( 'created_at');
+            $day = Carbon::parse($dat)->format('l');
+            $item = [
+                "DayName"=> $day,
+                "count"=> $posts,
+            ];
+            // dd($posts);
+            array_push($totat_price_sum, $item);
+        }
+
+        return response( [$totat_price_sum, $weekRide], 200);
     }
 }

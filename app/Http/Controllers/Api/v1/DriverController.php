@@ -390,7 +390,10 @@ class DriverController extends Controller
             // dd($posts);
             array_push($totat_price_sum, $item);
         }
+        $week_count= [
+            'weekRide'=> $weekRide
+        ];
 
-        return response( [$totat_price_sum, $weekRide], 200);
+        return response( [$totat_price_sum, $week_count], 200);
     }
 }

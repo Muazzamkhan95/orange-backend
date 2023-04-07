@@ -314,9 +314,20 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function forgetPassword(Request $request)
     {
-        //
+        $user = User::where('email', $request->email)->first();
+        if($user === null){
+            return response('No Record Found', 404);
+        } else {
+            return response($user, 200);
+        }
+    }
+    public function resetPassword(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        $user->password = Hash::make($request->password);
+
     }
 
     /**

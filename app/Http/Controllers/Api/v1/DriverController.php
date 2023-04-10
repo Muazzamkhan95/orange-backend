@@ -393,7 +393,11 @@ class DriverController extends Controller
         $week_count= [
             'weekRide'=> $weekRide
         ];
+        $data = [
+            "total_price_sum"=> $totat_price_sum,
+            "week_count"=> $week_count
+        ];
 
-        return response( [$totat_price_sum, $week_count], 200);
+        return response($data, 200);
     }
 }

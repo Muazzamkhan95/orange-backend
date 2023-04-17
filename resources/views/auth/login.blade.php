@@ -57,7 +57,7 @@
   <div class="card" id="login-page-css">
     <div class="login-box">
       <div class="login-logo">
-        <img src="../../dist/img/Group 9767.png" class="img-fluid"></img>
+        <img src="../../dist/img/Group 9767.png" class="img-fluid"/>
       </div>
     <div class="card-body login-card-body">
         <form method="POST" action="{{ route('login') }}">
@@ -76,7 +76,7 @@
           <div class="input-group-append">
             <div class="input-group-text">
 
-              <span class=""><img src="../../dist/img/Eye---Slash.png" class="img-fluid" alt=""></span>
+              <span class=""><img src="{{ asset('dist/img/Eye---Slash.png') }}" class="img-fluid" alt=""></span>
             </div>
           </div>
         </div>

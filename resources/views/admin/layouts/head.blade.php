@@ -4,35 +4,28 @@
 <meta content="Spruko" name="author">
 
 <!-- Title -->
-<title>{{ config('app.name', 'Zeizze') }} @yield('title')</title>
+<title>Ansta - Responsive Multipurpose Admin Dashboard Template</title>
 
 <!-- Favicon -->
 <link href="{{ asset('assets/img/brand/favicon.png') }}" rel="icon" type="image/png">
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
-
-<!-- Icons -->
-<link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
-
-<!--Bootstrap.min css-->
-<link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
-
-<!-- Ansta CSS -->
-<link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet" type="text/css">
-
-<!-- Tabs CSS -->
-<link href="{{ asset('assets/plugins/tabs/style.css') }}" rel="stylesheet" type="text/css">
-
-<!-- jvectormap CSS -->
-<link href="{{ asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
-
-<!-- Custom scroll bar css-->
-<link href="{{ asset('assets/plugins/customscroll/jquery.mCustomScrollbar.css') }}" rel="stylesheet" />
-
-<!-- Sidemenu Css -->
-<link href="{{ asset('assets/plugins/toggle-sidebar/css/sidemenu.css') }}" rel="stylesheet">
-<link href="{{ asset('datatable/jquery.dataTables.min.css') }}" rel="stylesheet">
-
-{{-- Text Editor --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+<!-- iCheck -->
+<link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+<!-- JQVMap -->
+<link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+<!-- summernote -->
+<link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">

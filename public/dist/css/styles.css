@@ -1,0 +1,51 @@
+.login-page{
+    background-color: #151515;
+}
+#login-page-css {
+    border-radius: 20px;
+}
+
+#login-page-css .login-logo img{
+    height: 50px;
+}
+#login-page-css .login-box{
+    background-color:rgb(33,35,39); 
+    border-radius: 16px;
+    padding: 20px 0px 10px 0px;
+}
+#login-page-css .login-card-body{
+    background-color: rgb(33,35,39);
+}
+#login-page-css .form-control{
+    background-color:rgb(33,35,39) ;
+    border-color: #777; 
+}
+#login-page-css .form-control:hover{
+    background-color:rgb(21,21,21) ;
+    color: #fff;
+}
+#login-page-css .input-group-text img{
+    height: 20px;
+}
+#login-page-css .input-group-text{
+    border-color: #777;
+}
+#login-page-css .login-card-body{
+    padding: 20px 35px;
+}
+#login-page-css .text-end{
+  text-align: end;
+}
+#login-page-css .text-end a{
+  text-decoration: none;
+  color: #777;
+}
+#login-page-css .social-auth-links .btn{
+  background-color: #F07900;
+}
+#login-page-css .signuplink a{
+  color: #F07900;
+}
+#login-page-css .login-footer{
+  color: #777
+}

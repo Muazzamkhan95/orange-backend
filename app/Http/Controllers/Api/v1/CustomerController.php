@@ -101,6 +101,9 @@ class CustomerController extends Controller
                 "driver_name"=> $totalDetial->driver->name,
                 "amount"=> $totalDetial->amount,
                 "total_price"=> $totalDetial->total_price,
+                "pickup"=> $totalDetial->pickup,
+                "destination"=> $totalDetial->destination,
+                "timeofendtrip"=> $totalDetial->timeofendtrip,
             ];
             array_push($todayRidesDetails, $data);
         }

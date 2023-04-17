@@ -14,28 +14,27 @@
 	<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
 
 	<!-- Icons -->
-	<link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
-
-	<!--Bootstrap.min css-->
-	<link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
-
-	<!-- Ansta CSS -->
-	<link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet" type="text/css">
-
-	<!-- Single-page CSS -->
-	<link href="{{ asset('assets/plugins/single-page/css/main.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('../../plugins/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('../../plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('../../dist/css/adminlte.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('../../dist/css/styles.css') }}" rel="stylesheet">
+	{{-- <link href="{{ asset('') }}" rel="stylesheet">
+	<link href="{{ asset('') }}" rel="stylesheet">
+	<link href="{{ asset('') }}" rel="stylesheet">
+	<link href="{{ asset('') }}" rel="stylesheet">
+	<link href="{{ asset('') }}" rel="stylesheet"> --}}
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="hold-transition login-page">
     @yield('content')
 
 
 	<!-- Ansta Scripts -->
 	<!-- Core -->
-	<script src="{{ asset('assets/plugins/jquery/dist/jquery.min.js') }}"></script>
-	<script src="{{ asset('assets/js/popper.js') }}"></script>
-	<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('../../plugins/jquery/jquery.min.js') }}"></script>
+	<script src="{{ asset('../../plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ asset('../../dist/js/adminlte.min.js') }}"></script>
 
 </body>
 

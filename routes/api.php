@@ -40,7 +40,7 @@ Route::post('driver/verify', [AuthController::class, 'verify']);
 Route::post('user/signup', [AuthController::class, 'signupUser']);
 Route::post('user/verify', [AuthController::class, 'verify']);
 Route::post('user/login', [AuthController::class, 'loginUser']);
-Route::get('forget/password/{email}', [AuthController::class, 'forgetPassword']);
+Route::post('forget/password', [AuthController::class, 'forgetPassword']);
 Route::post('reset/password', [AuthController::class, 'resetPassword']);
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

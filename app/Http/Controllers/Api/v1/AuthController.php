@@ -314,9 +314,9 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function forgetPassword($email)
+    public function forgetPassword(Request $request)
     {
-        $user = User::where('email', $email)->first();
+        $user = User::where('email', $request->email)->first();
         if($user === null){
             return response('No Record Found', 404);
         } else {

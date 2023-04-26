@@ -106,6 +106,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('get/payment/method', [PaymentMethodController::class, 'index']);
 
         Route::get('check/screen/display/{trip_id}', [BookingController::class, 'screentoDisplay']);
+        Route::post('logout/{id}', [AuthController::class, 'logout']);
 
     });
     // return $request->user();

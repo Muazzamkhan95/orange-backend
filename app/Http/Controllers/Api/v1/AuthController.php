@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Twilio\Rest\Client;
-
+use Illuminate\Support\Str;
 class AuthController extends Controller
 {
     /**

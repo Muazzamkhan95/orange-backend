@@ -324,7 +324,7 @@ class AuthController extends Controller
         $user = User::where('phone', $request->phone)->first();
         // dd($user);
         if($user !== null ){
-            $token = env('TWILIO_AUTH_TOKEN', '6b4241b1cd48f1297ffee4d3205c6213');
+            $token = env('TWILIO_AUTH_TOKEN', 'c34ecca0c360128c418aaa27bab9a705');
         $twilio_sid = env('TWILIO_SID', 'ACe8c3d321c5982d30d06058179a4cbe84');
         $twilio_verify_sid = env('TWILIO_VERIFY_SID', 'VA62f5835a3be4bf8df9317f5c6e366153');
         // $token = env('TWILIO_AUTH_TOKEN','d013a35b70ecf8f1f092ad21d5955942');

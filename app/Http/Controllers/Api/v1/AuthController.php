@@ -347,7 +347,9 @@ class AuthController extends Controller
     private function sendResetEmail($email, $token)
     {
         //Retrieve the user from the database
-        $user = DB::table('users')->where('email', $email)->select('firstname', 'email')->first();
+        $user = User::where('email', $email)->first();
+
+        // $user = DB::table('users')->where('email', $email)->select('firstname', 'email')->first();
         //Generate, the password reset link. The token generated is embedded in the link
         $link = config('base_url') . 'reset/password' . $token . '?email=' . urlencode($user->email);
 

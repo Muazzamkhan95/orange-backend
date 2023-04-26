@@ -23,19 +23,19 @@ class AuthController extends Controller
 
     public function phonAuth(Request $request)
     {
-        dd($request->phone);
+        // dd($request->phone);
         // $phonenumber = $request->phone;
         // return "OK";
 
-        $token = env('TWILIO_AUTH_TOKEN', '47cc4930d2bd260a1645397ac38ebb75');
-        $twilio_sid = env('TWILIO_SID', 'ACe8c3d321c5982d30d06058179a4cbe84');
-        $twilio_verify_sid = env('TWILIO_VERIFY_SID', 'VA62f5835a3be4bf8df9317f5c6e366153');
+        // $token = env('TWILIO_AUTH_TOKEN', '47cc4930d2bd260a1645397ac38ebb75');
+        // $twilio_sid = env('TWILIO_SID', 'ACe8c3d321c5982d30d06058179a4cbe84');
+        // $twilio_verify_sid = env('TWILIO_VERIFY_SID', 'VA62f5835a3be4bf8df9317f5c6e366153');
         // $token = env('TWILIO_AUTH_TOKEN','d013a35b70ecf8f1f092ad21d5955942');
         // $twilio_sid = env('TWILIO_SID','ACf24d4b159d33a125bedafaf8127fee72');
         // $twilio_verify_sid = env('TWILIO_VERIFY_SID','VA6f964f944769aaa4c6a48df14f9f01d3');
-        // $token = "d013a35b70ecf8f1f092ad21d5955942";
-        // $twilio_sid = "ACf24d4b159d33a125bedafaf8127fee72";
-        // $twilio_verify_sid = "VA6f964f944769aaa4c6a48df14f9f01d3" ;
+        $token = "c34ecca0c360128c418aaa27bab9a705";
+        $twilio_sid = "ACe8c3d321c5982d30d06058179a4cbe84";
+        $twilio_verify_sid = "VA62f5835a3be4bf8df9317f5c6e366153" ;
 
 
         $twilio = new Client($twilio_sid, $token);

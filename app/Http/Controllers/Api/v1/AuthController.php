@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Twilio\Rest\Client;
 
 class AuthController extends Controller
@@ -21,14 +22,15 @@ class AuthController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function phonAuth(Request $request){
+    public function phonAuth(Request $request)
+    {
         // dd($request->phone);
         // $phonenumber = $request->phone;
         // return "OK";
 
-        $token = env('TWILIO_AUTH_TOKEN','47cc4930d2bd260a1645397ac38ebb75');
-        $twilio_sid = env('TWILIO_SID','ACe8c3d321c5982d30d06058179a4cbe84');
-        $twilio_verify_sid = env('TWILIO_VERIFY_SID','VA62f5835a3be4bf8df9317f5c6e366153');
+        $token = env('TWILIO_AUTH_TOKEN', '47cc4930d2bd260a1645397ac38ebb75');
+        $twilio_sid = env('TWILIO_SID', 'ACe8c3d321c5982d30d06058179a4cbe84');
+        $twilio_verify_sid = env('TWILIO_VERIFY_SID', 'VA62f5835a3be4bf8df9317f5c6e366153');
         // $token = env('TWILIO_AUTH_TOKEN','d013a35b70ecf8f1f092ad21d5955942');
         // $twilio_sid = env('TWILIO_SID','ACf24d4b159d33a125bedafaf8127fee72');
         // $twilio_verify_sid = env('TWILIO_VERIFY_SID','VA6f964f944769aaa4c6a48df14f9f01d3');
@@ -37,15 +39,16 @@ class AuthController extends Controller
         // $twilio_verify_sid = "VA6f964f944769aaa4c6a48df14f9f01d3" ;
 
 
-            $twilio = new Client($twilio_sid, $token);
-            if($twilio->verify->v2->services($twilio_verify_sid)
-                ->verifications
-                ->create($request['phone'], "sms")){
+        $twilio = new Client($twilio_sid, $token);
+        if ($twilio->verify->v2->services($twilio_verify_sid)
+            ->verifications
+            ->create($request['phone'], "sms")
+        ) {
 
-                return response('SMS Send to Your Phone Number', 200);
-            }else{
-                return response('Error', 500);
-            }
+            return response('SMS Send to Your Phone Number', 200);
+        } else {
+            return response('Error', 500);
+        }
         // dd($html);
 
 
@@ -63,9 +66,9 @@ class AuthController extends Controller
         // $twilio_sid = env('TWILIO_SID','ACf24d4b159d33a125bedafaf8127fee72');
         // $twilio_verify_sid = env('TWILIO_VERIFY_SID','VA6f964f944769aaa4c6a48df14f9f01d3');
 
-        $token = env('TWILIO_AUTH_TOKEN','47cc4930d2bd260a1645397ac38ebb75');
-        $twilio_sid = env('TWILIO_SID','ACe8c3d321c5982d30d06058179a4cbe84');
-        $twilio_verify_sid = env('TWILIO_VERIFY_SID','VA62f5835a3be4bf8df9317f5c6e366153');
+        $token = env('TWILIO_AUTH_TOKEN', '47cc4930d2bd260a1645397ac38ebb75');
+        $twilio_sid = env('TWILIO_SID', 'ACe8c3d321c5982d30d06058179a4cbe84');
+        $twilio_verify_sid = env('TWILIO_VERIFY_SID', 'VA62f5835a3be4bf8df9317f5c6e366153');
 
         // $token = getenv("TWILIO_AUTH_TOKEN");
         // $twilio_sid = getenv("TWILIO_SID");
@@ -74,7 +77,7 @@ class AuthController extends Controller
         $verification = $twilio->verify->v2->services($twilio_verify_sid)
             ->verificationChecks
             ->create([
-                "to"=>$data['phone'],
+                "to" => $data['phone'],
                 "code" => $data["verification_code"]
             ]);
         if ($verification->valid) {
@@ -88,7 +91,8 @@ class AuthController extends Controller
         }
         // return back()->with(['phone_number' => $data['phone_number'], 'error' => 'Invalid verification code entered!']);
     }
-    public function signupUser(Request $request){
+    public function signupUser(Request $request)
+    {
         // dd($request);
         $validated = $request->validate([
             'name' => 'required', 'string', 'max:255',
@@ -109,7 +113,7 @@ class AuthController extends Controller
         $data->role_id = $role->id;
         $data->save();
         // dd($data);
-        $customer= new Customer();
+        $customer = new Customer();
         $customer->user_id = $data->id;
         $customer->name = $validated['name'];
         $customer->email = $validated['email'];
@@ -121,25 +125,26 @@ class AuthController extends Controller
         // ];
         return response('User Register Successfully', 200);
     }
-    public function loginUser(Request $request){
+    public function loginUser(Request $request)
+    {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // dd(auth()->user()->role_id);
-            if(auth()->user()->role_id == 3){
+            if (auth()->user()->role_id == 3) {
                 $auth_id = auth()->user()->id;
                 $customer = Customer::where('user_id', $auth_id)->first();
-                $dob= $customer->dob;
-                $profile_image= $customer->profile_image;
-                $gender= $customer->gender;
+                $dob = $customer->dob;
+                $profile_image = $customer->profile_image;
+                $gender = $customer->gender;
                 $data = [
-                    'id'=> $customer->id,
-                    'user_id'=> (string) $customer->user_id,
-                    'name'=> $customer->name,
-                    'email'=> $customer->email,
-                    'phone'=> $customer->phone,
-                    'profile_image'=> $profile_image,
-                    'dob'=> $dob,
-                    'gender'=> $gender
+                    'id' => $customer->id,
+                    'user_id' => (string) $customer->user_id,
+                    'name' => $customer->name,
+                    'email' => $customer->email,
+                    'phone' => $customer->phone,
+                    'profile_image' => $profile_image,
+                    'dob' => $dob,
+                    'gender' => $gender
                 ];
                 $response['data'] = $data;
                 $response['accessToken'] = auth()->user()->createToken('API Access Token')->plainTextToken;
@@ -157,7 +162,7 @@ class AuthController extends Controller
     public function signupRider(Request $request)
     {
         $email = User::where('email', $request->email)->first();
-        if($email == null){
+        if ($email == null) {
 
             $validated = $request->validate([
                 'name' => 'required', 'string', 'max:255',
@@ -192,7 +197,7 @@ class AuthController extends Controller
             $data->role_id = $role->id;
             $data->save();
 
-            $driver= new Driver();
+            $driver = new Driver();
             $driver->user_id = $data->id;
             $driver->name = $validated['name'];
             $driver->phone = $validated['phone'];
@@ -202,42 +207,42 @@ class AuthController extends Controller
             if (!empty(request()->file('profile_image'))) {
                 $destinationPath = 'storage/cv';
                 $extension = request()->file('profile_image')->getClientOriginalExtension();
-                $fileName ='/storage/profile/'. 'image-' . time() . rand() . $driver->id . '.' . $extension;
+                $fileName = '/storage/profile/' . 'image-' . time() . rand() . $driver->id . '.' . $extension;
                 request()->file('profile_image')->move($destinationPath, $fileName);
                 $driver->profile_image  = $fileName;
             }
             if (!empty(request()->file('cv_file'))) {
                 $destinationPath = 'storage/cv';
                 $extension = request()->file('cv_file')->getClientOriginalExtension();
-                $fileName ='/storage/cv/'. 'cv-' . time() . rand() . $driver->id . '.' . $extension;
+                $fileName = '/storage/cv/' . 'cv-' . time() . rand() . $driver->id . '.' . $extension;
                 request()->file('cv_file')->move($destinationPath, $fileName);
                 $driver->cv_file = $fileName;
             }
             if (!empty(request()->file('cnic_front'))) {
                 $destinationPath = 'storage/cnic';
                 $extension = request()->file('cnic_front')->getClientOriginalExtension();
-                $fileName ='/storage/cnic/'. 'cv-' . time() . rand() . $driver->id . '.' . $extension;
+                $fileName = '/storage/cnic/' . 'cv-' . time() . rand() . $driver->id . '.' . $extension;
                 request()->file('cnic_front')->move($destinationPath, $fileName);
                 $driver->cnic_front = $fileName;
             }
             if (!empty(request()->file('cnic_back'))) {
                 $destinationPath = 'storage/cnic';
                 $extension = request()->file('cnic_back')->getClientOriginalExtension();
-                $fileName ='/storage/cnic/'. 'cv-' . time() . rand() . $driver->id . '.' . $extension;
+                $fileName = '/storage/cnic/' . 'cv-' . time() . rand() . $driver->id . '.' . $extension;
                 request()->file('cnic_back')->move($destinationPath, $fileName);
                 $driver->cnic_back = $fileName;
             }
             if (!empty(request()->file('lic_front'))) {
                 $destinationPath = 'storage/driver';
                 $extension = request()->file('lic_front')->getClientOriginalExtension();
-                $fileName ='/storage/driver/'. 'cv-' . time() . rand() . $driver->id . '.' . $extension;
+                $fileName = '/storage/driver/' . 'cv-' . time() . rand() . $driver->id . '.' . $extension;
                 request()->file('lic_front')->move($destinationPath, $fileName);
                 $driver->lic_front = $fileName;
             }
             if (!empty(request()->file('lic_back'))) {
                 $destinationPath = 'storage/driver';
                 $extension = request()->file('lic_back')->getClientOriginalExtension();
-                $fileName ='/storage/driver/'. 'cv-' . time() . rand() . $driver->id . '.' . $extension;
+                $fileName = '/storage/driver/' . 'cv-' . time() . rand() . $driver->id . '.' . $extension;
                 request()->file('lic_back')->move($destinationPath, $fileName);
                 $driver->lic_back = $fileName;
             }
@@ -263,43 +268,44 @@ class AuthController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function loginRider(Request $request) {
+    public function loginRider(Request $request)
+    {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            if(auth()->user()->role_id == 2 && auth()->user()->isVerified == 1){
+            if (auth()->user()->role_id == 2 && auth()->user()->isVerified == 1) {
                 // if(auth()->user()->role_id == 2 && auth()->user()->	isVerified){
-                    $auth_id = auth()->user()->id;
-                    $driver = Driver::where('user_id', $auth_id)->first();
-                    $accessToken = auth()->user()->createToken('API Access Token')->plainTextToken;
-                    $data = [
-                        'id'=> $driver->id,
-                        'user_id'=> (string)$driver->user_id,
-                        'name'=> $driver->name,
-                        'email'=> $driver->email,
-                        'phone'=> $driver->phone,
-                        'profile_image'=> $driver->profile_image,
-                        'license'=> $driver->lic,
-                        'cnic'=> $driver->cnic,
-                        'rider_role'=> (string)$driver->rider_role,
-                        'accessToken'=> $accessToken,
-                    ];
-                    // dd($data);
-                    $response['data'] = $data;
-                    $response['status'] = '200';
+                $auth_id = auth()->user()->id;
+                $driver = Driver::where('user_id', $auth_id)->first();
+                $accessToken = auth()->user()->createToken('API Access Token')->plainTextToken;
+                $data = [
+                    'id' => $driver->id,
+                    'user_id' => (string)$driver->user_id,
+                    'name' => $driver->name,
+                    'email' => $driver->email,
+                    'phone' => $driver->phone,
+                    'profile_image' => $driver->profile_image,
+                    'license' => $driver->lic,
+                    'cnic' => $driver->cnic,
+                    'rider_role' => (string)$driver->rider_role,
+                    'accessToken' => $accessToken,
+                ];
+                // dd($data);
+                $response['data'] = $data;
+                $response['status'] = '200';
+                return response($response, 200)->header('Content-Type', 'application/json');
+            } else {
+                // dd(auth()->user()->isVerified);
+                if (auth()->user()->isVerified == 2) {
+                    $response['message'] = 'Your Profile is under review';
+                    return response($response, 200)->header('Content-Type', 'application/json');
+                } elseif (auth()->user()->isVerified == 3) {
+                    $response['message'] = 'Driver Account Has been Blocked';
                     return response($response, 200)->header('Content-Type', 'application/json');
                 } else {
-                    // dd(auth()->user()->isVerified);
-                    if(auth()->user()->isVerified == 2){
-                        $response['message'] = 'Your Profile is under review';
-                        return response($response, 200)->header('Content-Type', 'application/json');
-                    } elseif(auth()->user()->isVerified == 3){
-                        $response['message'] = 'Driver Account Has been Blocked';
-                        return response($response, 200)->header('Content-Type', 'application/json');
-                    } else {
-                        $response['message'] = 'invalid Username';
-                        return response($response, 403)->header('Content-Type', 'application/json');
-                    }
+                    $response['message'] = 'invalid Username';
+                    return response($response, 403)->header('Content-Type', 'application/json');
                 }
+            }
         } else {
             $response['message'] = 'invalid Username or password';
             $response['status'] = '403';
@@ -320,6 +326,16 @@ class AuthController extends Controller
         if($user === null){
             return response('No Record Found', 404);
         } else {
+            Password::sendResetLink(['email' => $user->email]);
+
+            $token = Password::getRepository()->create($user);
+            $credentials = ['email' => $user->email, 'password' => 'new_password', 'password_confirmation' => 'new_password', 'token' => $token];
+
+           Password::reset($credentials, function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->save();
+            });
             return response($user, 200);
         }
     }
@@ -375,8 +391,9 @@ class AuthController extends Controller
     {
         //
     }
-    public function logout($id, Request $request){
-        $driverstatus= DriverStatus::where('driver_id', $id)->first();
+    public function logout($id, Request $request)
+    {
+        $driverstatus = DriverStatus::where('driver_id', $id)->first();
         $driverstatus->device_token = '';
         $driverstatus->update();
         $request->user()->tokens()->delete();

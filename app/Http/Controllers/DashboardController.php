@@ -43,7 +43,6 @@ class DashboardController extends Controller
             array_push($driverstatus, $data1);
         }
         $d = json_encode($driverstatus);
-
         $driver_count = $driver - 1;
         return view('admin.dashboard', compact('driver_count',
         'customer', 'trip', 'tripToday', 'd'));

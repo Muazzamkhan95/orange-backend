@@ -8,8 +8,10 @@ use App\Models\Driver;
 use App\Models\DriverStatus;
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Twilio\Rest\Client;
@@ -323,20 +325,37 @@ class AuthController extends Controller
     public function forgetPassword(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-        if($user === null){
+        if ($user === null) {
             return response('No Record Found', 404);
         } else {
-            Password::sendResetLink(['email' => $user->email]);
+            DB::table('password_resets')->insert([
+                'email' => $request->email,
+                'token' => Str::random(60),
+                'created_at' => Carbon::now()
+            ]);
+            $tokenData = DB::table('password_resets')
+                ->where('email', $request->email)->first();
 
-            $token = Password::getRepository()->create($user);
-            $credentials = ['email' => $user->email, 'password' => 'new_password', 'password_confirmation' => 'new_password', 'token' => $token];
-
-           Password::reset($credentials, function ($user, $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password)
-                ])->save();
-            });
+            if ($this->sendResetEmail($request->email, $tokenData->token)) {
+                return redirect()->back()->with('status', trans('A reset link has been sent to your email address.'));
+            } else {
+                return redirect()->back()->withErrors(['error' => trans('A Network Error occurred. Please try again.')]);
+            }
             return response($user, 200);
+        }
+    }
+    private function sendResetEmail($email, $token)
+    {
+        //Retrieve the user from the database
+        $user = DB::table('users')->where('email', $email)->select('firstname', 'email')->first();
+        //Generate, the password reset link. The token generated is embedded in the link
+        $link = config('base_url') . 'reset/password' . $token . '?email=' . urlencode($user->email);
+
+        try {
+            //Here send the link with CURL with an external email API
+            return true;
+        } catch (\Exception $e) {
+            return false;
         }
     }
     public function resetPassword(Request $request)

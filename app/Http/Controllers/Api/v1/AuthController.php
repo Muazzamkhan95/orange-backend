@@ -322,7 +322,7 @@ class AuthController extends Controller
     public function forgetPassword(Request $request)
     {
         $user = User::where('phone', $request->phone)->first();
-        dd($user);
+        // dd($user);
         if($user !== null ){
             $token = env('TWILIO_AUTH_TOKEN', 'c34ecca0c360128c418aaa27bab9a705');
         $twilio_sid = env('TWILIO_SID', 'ACe8c3d321c5982d30d06058179a4cbe84');

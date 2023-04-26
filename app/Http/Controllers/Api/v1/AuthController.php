@@ -37,7 +37,6 @@ class AuthController extends Controller
         $twilio_sid = "ACe8c3d321c5982d30d06058179a4cbe84";
         $twilio_verify_sid = "VA62f5835a3be4bf8df9317f5c6e366153" ;
 
-
         $twilio = new Client($twilio_sid, $token);
         if ($twilio->verify->v2->services($twilio_verify_sid)
             ->verifications

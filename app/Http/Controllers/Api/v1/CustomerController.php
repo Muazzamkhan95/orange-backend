@@ -17,12 +17,13 @@ class CustomerController extends Controller
     public function update(Request $request){
         $data = User::where('id', $request->user_id)->first();
         $data->name = $request->name;
-        // $data->email = $request->email;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
 
         $data->update();
         $customer = Customer::where('user_id', $data->id)->first();
         $customer->name = $request->name;
-        // $customer->phone = $request->phone;
+        $customer->phone = $request->phone;
         $customer->email = $request->email;
         $customer->dob = $request->dob;
         $customer->gender = $request->gender;

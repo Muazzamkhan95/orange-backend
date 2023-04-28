@@ -30,10 +30,7 @@ class AuthController extends Controller
         // $token = env('TWILIO_AUTH_TOKEN', '47cc4930d2bd260a1645397ac38ebb75');
         // $twilio_sid = env('TWILIO_SID', 'ACe8c3d321c5982d30d06058179a4cbe84');
         // $twilio_verify_sid = env('TWILIO_VERIFY_SID', 'VA62f5835a3be4bf8df9317f5c6e366153');
-        // $token = env('TWILIO_AUTH_TOKEN','d013a35b70ecf8f1f092ad21d5955942');
-        // $twilio_sid = env('TWILIO_SID','ACf24d4b159d33a125bedafaf8127fee72');
-        // $twilio_verify_sid = env('TWILIO_VERIFY_SID','VA6f964f944769aaa4c6a48df14f9f01d3');
-        $token = "d6437772e9aade2dca8056590c4211a7";
+        $token = "ee96b5b609483c65c6621f0f9d106a3f";
         $twilio_sid = "ACafa13591da32caac26209a332b074073";
         $twilio_verify_sid = "VAb1b9f4efe60868f1d0137cae3ba1432d";
 
@@ -60,14 +57,10 @@ class AuthController extends Controller
         ]);
         // dd($data);
         /* Get credentials from .env */
-        // $token = env('TWILIO_AUTH_TOKEN','d013a35b70ecf8f1f092ad21d5955942');
-        // $twilio_sid = env('TWILIO_SID','ACf24d4b159d33a125bedafaf8127fee72');
-        // $twilio_verify_sid = env('TWILIO_VERIFY_SID','VA6f964f944769aaa4c6a48df14f9f01d3');
-
         // $token = env('TWILIO_AUTH_TOKEN', '47cc4930d2bd260a1645397ac38ebb75');
         // $twilio_sid = env('TWILIO_SID', 'ACe8c3d321c5982d30d06058179a4cbe84');
         // $twilio_verify_sid = env('TWILIO_VERIFY_SID', 'VA62f5835a3be4bf8df9317f5c6e366153');
-        $token = "d6437772e9aade2dca8056590c4211a7";
+        $token = "ee96b5b609483c65c6621f0f9d106a3f";
         $twilio_sid = "ACafa13591da32caac26209a332b074073";
         $twilio_verify_sid = "VAb1b9f4efe60868f1d0137cae3ba1432d";
         // $token = getenv("TWILIO_AUTH_TOKEN");
@@ -334,7 +327,7 @@ class AuthController extends Controller
             // $token = "d013a35b70ecf8f1f092ad21d5955942";
             // $twilio_sid = "ACf24d4b159d33a125bedafaf8127fee72";
             // $twilio_verify_sid = "VA6f964f944769aaa4c6a48df14f9f01d3" ;
-            $token = "d6437772e9aade2dca8056590c4211a7";
+            $token = "ee96b5b609483c65c6621f0f9d106a3f";
             $twilio_sid = "ACafa13591da32caac26209a332b074073";
             $twilio_verify_sid = "VAb1b9f4efe60868f1d0137cae3ba1432d";
 
